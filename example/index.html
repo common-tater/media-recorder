@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>media-recorder</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        font-family: monospace;
+      }
+      body {
+        padding: 50px;
+      }
+      label {
+        display: inline-block;
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>media-recorder</h1>
+    <form>
+      <label>
+        <span>Bit Depth</span>
+        <select name="bit-depth">
+          <option></option>
+        </select>
+      </label>
+      <label>
+        <span>Sample Rate</span>
+        <select name="sample-rate">
+          <option></option>
+        </select>
+      </label>
+      <label>
+        <span>Stereo</span>
+        <input name="mono" type="radio" value="0" checked>
+      </label>
+      <label>
+        <span>Mono</span>
+        <input name="mono" type="radio" value="1">
+      </label>
+    </form>
+    <script type="text/javascript" src="build.js"></script>
+  </body>
+</html>
