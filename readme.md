@@ -5,10 +5,38 @@ Yet another [MediaRecorder](http://www.w3.org/TR/mediastream-recording) shim. On
 Browser implementations for this API are inconsistent / incomplete.
 
 ## How
-[scriptProcessorNode](http://webaudio.github.io/web-audio-api/#the-scriptprocessornode-interface---deprecated)
+* [scriptProcessorNode](http://webaudio.github.io/web-audio-api/#the-scriptprocessornode-interface---deprecated)
+* Totally non-standard "configure()" method
 
-## Notes
-An experiment for now. The spec is pretty far from ready, and I'm not convinced it makes sense. A general purpose media recorder would need to allow users to select what to record (audio, video or both), configure capture mechanisms, encoding mechanisms and container formats. It's a nice idea to minimize surface area, but this task may be too complicated to abstract in a useful way.
+## Example
+```javascript
+var MediaRecorder = require('media-recorder')
+var context = require('audio-context')
+
+var r = new MediaRecorder(stream, 'audio/wav')
+
+r.configure({
+  audio: {
+    capture: {
+      context: context,
+      mono: true
+    },
+    encode: {
+      bitDepth: 16,
+      sampleRate: context.sampleRate >> 1
+    }
+  },
+  video: {
+    // not yet
+  }
+})
+
+r.ondataavailable = function (evt) {
+  doSomethingCool(evt.buffer)
+}
+
+r.start(100)  // get data roughly every 100ms
+```
 
 ## Credits
 Hacked from:
