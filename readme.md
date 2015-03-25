@@ -32,7 +32,7 @@ r.configure({
 })
 
 r.ondataavailable = function (evt) {
-  doSomethingCool(evt.buffer)
+  doSomethingCool(evt.data)
 }
 
 r.start(100)  // get data roughly every 100ms
