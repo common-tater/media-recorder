@@ -241,6 +241,10 @@ function oncapture (mediaType, samples, sampleRate) {
   this._encoders[mediaType].encode(samples, sampleRate, function (err, data) {
     if (err) throw err
 
+    if (self.state !== 'recording') {
+      return
+    }
+
     self._buffers = self._buffers || {}
     var buffer = self._buffers[mediaType]
 
