@@ -230,9 +230,6 @@ MediaRecorder.prototype._start = function (mediaType) {
 MediaRecorder.prototype._stop = function (mediaType) {
   this._capturers[mediaType].oncapture = null
   this._capturers[mediaType].stop()
-
-  delete this._capturers[mediaType]
-  delete this._encoders[mediaType]
 }
 
 function oncapture (mediaType, samples, sampleRate) {
@@ -270,7 +267,8 @@ MediaRecorder.prototype._emitDataAvailable = function () {
   var data = {}
 
   for (var type in this._trackTypes) {
-    data[type] = this._encoders[type].wrap(this._buffers[type])
+    var buffer = this._buffers && this._buffers[type] || new ArrayBuffer(0)
+    data[type] = this._encoders[type].wrap(buffer)
   }
 
   data = container.wrap(data)
