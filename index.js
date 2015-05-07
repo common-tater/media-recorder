@@ -4,6 +4,8 @@ var inherits = require('inherits')
 var events = require('events')
 var merge = require('merge').recursive
 var bufferConcat = require('array-buffer-concat')
+var Event = window.Event
+var MediaError = window.MediaError
 
 var capturers = {
   audio: {
@@ -212,8 +214,8 @@ MediaRecorder.prototype.canRecordMimeType = function (mimeType) {
 }
 
 MediaRecorder.prototype._start = function (mediaType) {
-  Capturer = capturers[mediaType][this._config[mediaType].capture.type]
-  Encoder = encoders[mediaType][this._config[mediaType].encode.type]
+  var Capturer = capturers[mediaType][this._config[mediaType].capture.type]
+  var Encoder = encoders[mediaType][this._config[mediaType].encode.type]
 
   this._capturers[mediaType] = new Capturer(this._stream)
   this._encoders[mediaType] = new Encoder()
