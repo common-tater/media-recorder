@@ -13,10 +13,17 @@
     "browserify": "^8.1.3",
     "ecstatic": "^0.5.8",
     "getusermedia": "^1.2.0",
-    "hyperglue2": "^1.3.0"
+    "hyperglue2": "^1.3.0",
+    "standard": "^3.7.3"
   },
   "scripts": {
-    "example": "browserify example > example/build.js && node example/server.js"
+    "example": "browserify example > example/build.js && node example/server.js",
+    "test": "standard"
+  },
+  "standard": {
+    "ignore": [
+      "example/build.js"
+    ]
   },
   "repository": "https://github.com/common-tater/media-recorder",
   "author": "Jesse Tane <jesse.tane@gmail.com>"
