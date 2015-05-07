@@ -10,7 +10,9 @@ var SAMPLE_RATES = computeAvailableSampleRates(context.sampleRate)
 function FormView () {
   this.el = document.querySelector('form')
   this.el.addEventListener('change', this._onchange.bind(this))
+}
 
+FormView.prototype.show = function () {
   var bitDepths = Object.keys(WAVEEncoder.BIT_DEPTHS).sort(numeric)
   var sampleRates = Object.keys(SAMPLE_RATES).sort(numeric)
 
@@ -35,11 +37,9 @@ function FormView () {
 }
 
 FormView.prototype._onchange = function () {
-  var bd = parseInt(this.el['bit-depth'].value)
+  var bd = parseInt(this.el['bit-depth'].value, 10)
   var sr = parseFloat(this.el['sample-rate'].value)
   var m = this.el['mono'].value === '1'
-
-  delay = this.el['delay']
 
   input.configure({
     audio: {
@@ -60,8 +60,9 @@ function numeric (a, b) {
 
 var input = null
 var timer = null
-var queue = []
-var formview = new FormView()
+var formView = new FormView()
+
+formView.show()
 
 getusermedia({ audio: true, video: false }, function (err, stream) {
   if (err) return console.error(err)
