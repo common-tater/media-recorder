@@ -38,6 +38,12 @@ r.ondataavailable = function (evt) {
 r.start(100)  // get data roughly every 100ms
 ```
 
+## Test
+```bash
+npm test
+```
+No proper tests yet. For now the command above just runs [standard](https://github.com/feross/standard).
+
 ## Credits
 Hacked from:
 * [Recorderjs](https://github.com/mattdiamond/Recorderjs)
