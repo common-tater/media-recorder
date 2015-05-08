@@ -259,6 +259,8 @@ function oncapture (mediaType, samples, sampleRate) {
       self._startTime = now
     }
   })
+
+  this.emit('capture', samples)
 }
 
 MediaRecorder.prototype._emitDataAvailable = function () {
