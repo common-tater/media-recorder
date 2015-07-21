@@ -19,6 +19,7 @@ r.configure({
   audio: {
     capture: {
       context: context,
+      size: chunkSize,
       mono: true
     },
     encode: {
