@@ -256,7 +256,7 @@ function oncapture (mediaType, samples, sampleRate) {
     var evt = new Event('encode')
     evt.type = mediaType
     evt.data = self._buffers[mediaType]
-    this.emit('encode', evt)
+    self.emit('encode', evt)
 
     var now = Date.now()
     if (self._timeSlice && now - self._startTime > self._timeSlice) {
