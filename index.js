@@ -253,7 +253,10 @@ function oncapture (mediaType, samples, sampleRate) {
       self._buffers[mediaType] = data
     }
 
-    this.emit('encode', self._buffers[mediaType])
+    var evt = new Event('encode')
+    evt.type = mediaType
+    evt.data = self._buffers[mediaType]
+    this.emit('encode', evt)
 
     var now = Date.now()
     if (self._timeSlice && now - self._startTime > self._timeSlice) {
@@ -262,7 +265,10 @@ function oncapture (mediaType, samples, sampleRate) {
     }
   })
 
-  this.emit('capture', samples)
+  var evt = new Event('capture')
+  evt.type = mediaType
+  evt.data = samples
+  this.emit('capture', evt)
 }
 
 MediaRecorder.prototype._emitDataAvailable = function () {
