@@ -253,6 +253,8 @@ function oncapture (mediaType, samples, sampleRate) {
       self._buffers[mediaType] = data
     }
 
+    this.emit('encode', self._buffers[mediaType])
+
     var now = Date.now()
     if (self._timeSlice && now - self._startTime > self._timeSlice) {
       self._emitDataAvailable()
